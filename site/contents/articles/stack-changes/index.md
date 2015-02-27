@@ -3,6 +3,7 @@ title: Altering JavaScript frames
 author: michael
 date: 2015-02-21
 template: article.jade
+comments: true
 ---
 
 For a while I've been working on a project in [V8](https://code.google.com/p/v8/) to encode type feedback into
