@@ -339,6 +339,18 @@ the test passes, finding all of the local variables with their correct values.
 Conclusion
 ----------
 
-TBD, performance.
+Well, this picture shows I get what I want if the system in is place:
 
 <center><img src="drawings/frame-vector.png" width=600></center>
+
+But how about performance? It looks good for most benchmarks, but there are a
+few SunSpider tests that are short enough that we don't manage to run optimized
+code, and there is a net loss because our unmanaged frames are 1 word bigger. I
+do have to pay for that. Before making this part of the tree, I'll need to
+validate that the cost is worthwhile when considering the type vector passage as
+a whole. On the whole, I'm optimistic.
+
+My changelist for the work on all
+platforms is [here](https://codereview.chromium.org/942513002/). Thank you for
+following this meandering course through some V8 internals :).
+
