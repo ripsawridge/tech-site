@@ -1,0 +1,27 @@
+       |      ...      |
+       |               |
+       +---------------+
+       | receiver      | --+
+       +---------------+   |
+       | return addr   |   |
+       +---------------+   |
+ebp -> | old frame ptr |   |
+       +---------------+   |-InputFrameSize-
+       | context       |   |
+       +---------------+   |
+       | JSFunction    |   |
+       +---------------+   |
+       | alignment (0) |   |
+       +---------------+   |
+       | Slot 1        | --+
+       +---------------+
+       | deopt addr    | --+
+       +---------------+   |
+       | bailout ID    |   |
+       +---------------+   |
+       |   double      |   |-DeoptimizationData-
+       |  registers    |   |
+       +---------------+   |
+       |               |   |
+       |  registers    |   |
+esp -> +---------------+ --+
