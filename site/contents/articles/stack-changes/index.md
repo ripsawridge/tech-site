@@ -218,7 +218,8 @@ the stack. We'll pop the registers into place, return to the continuation
 address, and finally state and pc are consumed to deposit us rather prettily
 into frame N-1.
 
-With a `popad` instruction, we restore the saved registers to the CPU, then
+With a `popad` instruction, we
+restore the saved registers to the CPU, then
 execute a `ret` instruction to pop the continuation address from the stack
 and jump to it's code. The state and pc addresses will be consumed to
 appropriately enter unoptimized code at the right point with the right
