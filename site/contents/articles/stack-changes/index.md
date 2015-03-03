@@ -37,7 +37,7 @@ than code. But the V8 IC system is rich, complex and performance
 sensitive. Becuase of that introducing data structures for feedback has been
 slow. A year ago I began using the "type feedback vector" to record data for
 calls from one JavaScript function to another. Now I'm working on making loads
-(like `x = obj.foo` and keyed loads like `x = obj[h]` use the type
+(like `x = obj.foo` and keyed loads like `x = obj[h]`) use the type
 feedback vector, and avoid patching code completely.
 
 It's difficult because a data structure solution means more memory loads no
