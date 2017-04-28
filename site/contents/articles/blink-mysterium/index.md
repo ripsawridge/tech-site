@@ -137,7 +137,7 @@ At the risk (certainty!) of overbroad generalization, if we use an IC in optimiz
         ;; code: KEYED_LOAD_IC
 
 Yuck, this is the for loop with `elem = elems[i]`. So sad that we are generic! I really want to know why.
-I ran chrome with the debugger, first adjusting `gn args out\Debug` to include the key
+I ran chrome with the debugger, first adjusting `gn args out/Debug` to include the key
 `v8_optimized_debug = false` so I could inspect variables. I found the place in the IC system where we
 update the IC state, using printf-style debugging to stop at the right place:
 
@@ -190,7 +190,7 @@ Hmm, we have an elements store of length 1. What about our key?
     (gdb) p key
     $8 = {<v8::internal::HandleBase> = {location_ = 0x7f2a495e8920}, <No data fields>}
     (gdb) job *key
-    Cannot access memory at address 0x100000000
+     Smi: 0x1 (1)
 
 Oh. The key is a Smi with the value 1. Sigh. We are looking at the array beyond the end. And a quick
 glance at the KeyedLoadIC dispatcher shows that we MISS to the runtime in this case (this code is in
