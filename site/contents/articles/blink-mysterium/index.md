@@ -204,7 +204,7 @@ I locally changed the code to look more old-fashioned because I wanted to see th
 ```javascript
 cleanData: function( elems, /* internal */ acceptData ) {
   ...
-  var len = elems.lenth;
+  var len = elems.length;
   for ( ; i < len; i++ ) {
     elem = elems[i];
     ...
