@@ -12,22 +12,9 @@ module.exports = function(grunt) {
           config: './config.json'
         }
       }
-    },
-    rsync: {
-      options: {
-        recursive: true
-      },
-      production: {
-        options: {
-          src: "./build/",
-          dest: "~/public_html",
-          host: "mountai8@mountainwerks.org"
-        }
-      }
     }
   });
   grunt.loadNpmTasks('grunt-wintersmith');
-  grunt.loadNpmTasks('grunt-rsync');
 
   grunt.registerTask('preview', [
     'wintersmith:preview'
