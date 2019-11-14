@@ -1,3 +1,4 @@
+
 extends layout
 
 block content
@@ -11,7 +12,7 @@ block content
           a(href=article.url)= article.title
       section.content
         if article.intro.length > 0
-          | !{ typogr(article.intro).typogrify() }
+          != typogr(article.intro).typogrify()
         if article.hasMore
           p.more
             a(href=article.url) more
@@ -19,11 +20,8 @@ block content
 block prepend footer
   div.nav
     if prevPage
-      a(href=prevPage.url) « Newer
+      a(href=prevPage.url) &laquo; Newer
     else
-      a(href='/archive.html') « Archives
+      a(href='/archive.html') &laquo; Archives
     if nextPage
-      a(href=nextPage.url) Next page »
-
-
-
+      a(href=nextPage.url) Next page &raquo;

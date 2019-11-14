@@ -2,7 +2,7 @@
 title: Poking around in Speedometer
 author: michael
 date: 2017-04-25
-template: article.jade
+template: article.pug
 comments: true
 ---
 

@@ -2,7 +2,7 @@
 title: Altering JavaScript frames
 author: michael
 date: 2015-02-21
-template: article.jade
+template: article.pug
 comments: true
 ---
 
