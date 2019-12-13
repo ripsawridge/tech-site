@@ -49,6 +49,22 @@ put an interrupt in the code. "So, there's nothing wrong with that stack limit c
 
 Okay, thanks! <muttering under breath that I should know that, grr>.
 
+Indeed, the instruction selector emits a debug break if it sees Unreachable in the graph:
+
+```cpp
+// in src/compiler/backend/instruction-selector.cc
+
+void InstructionSelector::VisitUnreachable(Node* node) {
+  OperandGenerator g(this);
+  Emit(kArchDebugBreak, g.NoOutput());
+}
+```
+
+We insert Unreachable nodes in many places. In particular it's done if we end up with a type for the node of
+`None`. Types are often refined through intersection. An intersection of a `NaN` and a
+`Range(-100, 100)` would produce `None`. If we discover this, we'll insert unreachable.
+
+
 With Turbolizer, I can see the inner loop appear after the inlining phase. I notice that eventually
 this loop no longer exists. Is TurboFan just really fancy and amazing, recognizing that the loop
 can only run once? That would be cool...
@@ -73,6 +89,7 @@ it's interesting `Range(-inf, inf)` type?
 
 1. Propagation Phase (phase PROPAGATE):
 
+```
     visit #73: Phi (trunc: no-truncation (but identify zeros))
       queue #112?: no-value-use
       added: no-truncation (but identify zeros)
@@ -86,12 +103,12 @@ it's interesting `Range(-inf, inf)` type?
       queue #103?: no-truncation (but identify zeros)
       added: no-truncation (but distinguish zeros)
       queue #68?: no-value-use
-
+```
 1. Type Propagation Phase (phase RETYPE):
-
+```
      visit #73: Phi
       ==> output kMachNone
-
+```
 
 
 Another node, the TypeGuard (#112) comes from after the logical shift right operation, and it appears to end up with type None.
